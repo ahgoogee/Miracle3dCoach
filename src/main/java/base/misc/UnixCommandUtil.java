@@ -21,7 +21,7 @@ public class UnixCommandUtil
 	private static boolean IS_UNIX_OS = !System.getProperty("os.name").startsWith("Windows");
 
 	/**
-	 * Retrieves the pid of a unix process. (Since Java 9, this is also possible with {@link Process#pid()}.)
+	 * Retrieves the pid of a unix process. (Since Java 9, this is also possible with {@link Process pid()}.)
 	 * @param process the process object to get the pid from
 	 * @return the pid, -1 if not able to get it
 	 * @throws NoSuchFieldException

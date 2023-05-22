@@ -4,7 +4,7 @@ import base.connection.ConnectionException;
 import base.connection.IServerConnection;
 import base.connection.impl.ServerConnection;
 import base.observer.IObserver;
-import connection.SimStateTest;
+import monitor.enums.PlayMode;
 import monitor.msgparser.IMonitorMessageParser;
 import monitor.msgparser.impl.MonitorMessageParser;
 import monitor.worldmodel.IMonitorWorldModel;
@@ -22,13 +22,20 @@ public class WorldModelTest {
         }
     }
     private static class RuntimeTest implements IObserver<byte[]> {
-        private IMonitorWorldModel worldModel = new MonitorWorldModel();
-        private IMonitorMessageParser parser = new MonitorMessageParser();
+        private final IMonitorWorldModel worldModel = new MonitorWorldModel();
+        private final IMonitorMessageParser parser = new MonitorMessageParser();
+
+        private PlayMode lastPlayMode = PlayMode.NONE;
 
         @Override
         public void update(byte[] var1) {
             parser.update(var1);
             worldModel.update(parser);
+
+            //测试比赛模式读取
+            if(worldModel.getPlayMode() != lastPlayMode)
+                System.out.println(worldModel.getPlayMode());
+            lastPlayMode = worldModel.getPlayMode();
         }
     }
 

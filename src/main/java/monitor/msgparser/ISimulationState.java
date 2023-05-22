@@ -52,4 +52,9 @@ public interface ISimulationState {
     Integer getPlayMode();
 
     List<Foul> getFouls();
+
+    Integer getPassModeMinOppBallDist();
+
+    Integer getPassModeDuration();
+
 }

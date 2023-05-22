@@ -32,6 +32,9 @@ public class SimulationState implements ISimulationState {
     private Integer playMode;
     private List<Foul> fouls = new ArrayList();
 
+    private Integer passModeMinOppBallDist;
+    private Integer passModeDuration;
+
     public SimulationState() {
     }
 
@@ -131,6 +134,10 @@ public class SimulationState implements ISimulationState {
         return this.fouls;
     }
 
+    public Integer getPassModeMinOppBallDist(){return this.passModeMinOppBallDist;}
+
+    public Integer getPassModeDuration(){return this.passModeDuration;}
+
     public void setFieldLength(Float fieldLength) {
         this.fieldLength = fieldLength;
     }
@@ -226,4 +233,8 @@ public class SimulationState implements ISimulationState {
     public void addFoul(Foul foul) {
         this.fouls.add(foul);
     }
+
+    public void setPassModeMinOppBallDist(Integer passModeMinOppBallDist) {this.passModeMinOppBallDist = passModeMinOppBallDist;}
+
+    public void setPassModeDuration(Integer passModeDuration) {this.passModeDuration = passModeDuration;}
 }

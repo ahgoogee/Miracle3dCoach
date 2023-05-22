@@ -102,7 +102,6 @@ public class RSGConverter {
                                 for(int j = 2; j < child.children.size(); ++j) {
                                     playModes[j - 1] = (String)child.children.get(j);
                                 }
-
                                 state.setPlayModes(playModes);
                                 break;
                             case "team_left":
@@ -117,6 +116,12 @@ public class RSGConverter {
                             case "foul":
                                 Foul foul = new Foul(state.getTime(), this.parseInteger(child, 1), Foul.FoulType.values()[this.parseInteger(child, 2)], this.parseInteger(child, 3), this.parseInteger(child, 4));
                                 state.addFoul(foul);
+                                break;
+                            case "PassModeMinOppBallDist":
+                                state.setPassModeMinOppBallDist(Integer.parseInt(value));
+                                break;
+                            case "PassModeDuration":
+                                state.setPassModeDuration(Integer.parseInt(value));
                                 break;
                             default:
                                 System.err.println("Unknown Parameter: " + child);

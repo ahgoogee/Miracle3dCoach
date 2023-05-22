@@ -1,37 +1,56 @@
+/* Copyright 2008 - 2021 Hochschule Offenburg
+ * For a list of authors see README.md
+ * This software of HSOAutonomy is released under GPL-3 License (see gpl.txt).
+ */
+
 package base.symbol;
 
 import java.util.List;
 
-public class SymbolNode {
-    public final List<Object> children;
+/**
+ * Represents a Symbol Nodes, containing other child nodes (or leafs).
+ *
+ * @author Simon Raffeiner
+ */
+public class SymbolNode
+{
+	public final List<Object> children;
 
-    public SymbolNode() {
-        this.children = null;
-    }
+	public SymbolNode()
+	{
+		children = null;
+	}
 
-    public SymbolNode(List<Object> children) {
-        this.children = children;
-    }
+	public SymbolNode(List<Object> children)
+	{
+		this.children = children;
+	}
 
-    public String toString() {
-        String ret = "";
-        if (this.children != null && !this.children.isEmpty()) {
-            for(int i = 0; i < this.children.size(); ++i) {
-                Object child = this.children.get(i);
-                if (i > 0) {
-                    ret = ret + " ";
-                }
+	/**
+	 * Returns a textual representation of the Node. If your Symbol Tree was
+	 * parsed from an input string of a proper S-expression,
+	 * this output should always be identical to your input.
+	 */
+	@Override
+	public String toString()
+	{
+		String ret = "";
 
-                if (child instanceof SymbolNode) {
-                    ret = ret + "(" + child.toString() + ")";
-                } else {
-                    ret = ret + child.toString();
-                }
-            }
+		if (children == null || children.isEmpty())
+			return "";
 
-            return ret;
-        } else {
-            return "";
-        }
-    }
+		for (int i = 0; i < children.size(); i++) {
+			Object child = children.get(i);
+
+			if (i > 0)
+				ret += " ";
+
+			if (child instanceof SymbolNode)
+				ret += "(" + child.toString() + ")";
+			else
+				ret += child.toString();
+		}
+
+		return ret;
+	}
 }

@@ -4,28 +4,25 @@ import base.connection.ConnectionException;
 import base.connection.IServerConnection;
 import base.connection.impl.ServerConnection;
 import base.observer.IObserver;
+import base.symbol.SymbolNode;
 import base.symbol.SymbolTreeParser;
 
 import java.io.UnsupportedEncodingException;
 
-public class ConnectionTest {
+public class SymbolTest {
     public static void main(String[] args) {
         IServerConnection connection = new ServerConnection("localhost",3200);
-
-        //附加观察者
-        connection.attach(new RuntimeTest());
+        connection.attach(new SymbolRuntimeTest());
         try {
-            //建立连接
             connection.establishConnection();
-            //开启循环
             connection.startReceiveLoop();
         } catch (ConnectionException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static class RuntimeTest implements IObserver<byte[]>{
-        //服务器只会发送更新信息,如果没有数据变化,则发送'nd'
+    public static class SymbolRuntimeTest implements IObserver<byte[]> {
+        private SymbolTreeParser parser = new SymbolTreeParser();
         @Override
         public void update(byte[] var1) {
             String content = null;
@@ -34,8 +31,9 @@ public class ConnectionTest {
             } catch (UnsupportedEncodingException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(content);
-            System.out.println("////////////////////////////////////////////////////////////////////////////////");
+
+            SymbolNode root = parser.parse(content);
         }
     }
+
 }

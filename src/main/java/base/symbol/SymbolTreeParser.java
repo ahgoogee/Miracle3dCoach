@@ -1,76 +1,146 @@
-package base.symbol;
+/* Copyright 2008 - 2021 Hochschule Offenburg
+ * For a list of authors see README.md
+ * This software of HSOAutonomy is released under GPL-3 License (see gpl.txt).
+ */
 
+package base.symbol;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 符号树解析器
- * 将服务器原始消息转化为符号数结构
+ * Parses an s-expression string into a Tree consisting of SymbolNode and String objects.
+ *
+ * @author Simon Raffeiner
  */
-public class SymbolTreeParser {
-    public SymbolTreeParser() {
-    }
+public class SymbolTreeParser
+{
+	/**
+	 * Parse an s-expression string into a Symbol tree.
+	 *
+	 * @param input String to parse
+	 * @return Generated Symbol tree
+	 * @throws IllegalSymbolInputException if illegal symbols are found in the
+	 *         input stream
+	 */
+	public SymbolNode parse(String input) throws IllegalSymbolInputException
+	{
+		/* Check input rules */
+		if (input == null || input.length() == 0)
+			throw new IllegalSymbolInputException("Empty string");
 
-    public SymbolNode parse(String input) throws IllegalSymbolInputException {
-        if (input != null && input.length() != 0) {
-            if (input.charAt(0) == '(' && input.charAt(input.length() - 1) == ')') {
-                return parseReal(input);
-            } else {
-                throw new IllegalSymbolInputException("未嵌入大括号中的输入：" + input);
-            }
-        } else {
-            throw new IllegalSymbolInputException("空字符串");
-        }
-    }
+		if (input.charAt(0) != '(' || input.charAt(input.length() - 1) != ')')
+			throw new IllegalSymbolInputException("Input not embedded in braces: " + input);
 
-    private static SymbolNode parseReal(String string) throws IllegalSymbolInputException {
-        char[] input = string.toCharArray();
-        List<Object> tmpchildren = new ArrayList(5);
-        int index = 0;
-        int level = 0;
+		return parseReal(input);
+	}
 
-        int startIndex;
-        for(startIndex = 0; index < input.length && level >= 0; ++index) {
-            switch (input[index]) {
-                case ' ':
-                    if (level == 0) {
-                        if (index > startIndex) {
-                            tmpchildren.add(string.substring(startIndex, index));
-                        }
+	/**
+	 * Parse a string into a symbol tree. This routine fetches the
+	 * top-level-tokens from the string, converts them to SymbolLeaf entries and
+	 * adds them to the actual node. If a list is found the complete content
+	 * (regardless how many levels of symbols and sub-lists are found inside the
+	 * list)between the highest-level opening and closing braces is parsed
+	 * recursively.
+	 *
+	 * The following example shows how the tree is formed:
+	 *
+	 * Input: (A (B (C C C)) A)
+	 *
+	 * 1. Token A is added 2. The function calls itself on the list "(B (C C C))"
+	 * 3. Token B is added 4. The function calls itself on the list "(C C C)" 5.
+	 * The three "C" tokens are added 6. The function returns from the recursive
+	 * calls 7. Token "A" is added
+	 *
+	 * @param string String to parse
+	 * @return Generated Symbol tree
+	 * @throws IllegalSymbolInputException if illegal symbols are found in the
+	 *         input stream
+	 */
+	private static SymbolNode parseReal(String string) throws IllegalSymbolInputException
+	{
+		char[] input = string.toCharArray();
 
-                        startIndex = index + 1;
-                    }
-                    break;
-                case '(':
-                    if (level == 0) {
-                        if (index > startIndex) {
-                            tmpchildren.add(string.substring(startIndex, index));
-                        }
+		/* Temporary dynamic children list */
+		List<Object> tmpchildren = new ArrayList<>(5);
 
-                        startIndex = index + 1;
-                    }
+		/* Current character index */
+		int index = 0;
 
-                    ++level;
-                    break;
-                case ')':
-                    --level;
-                    if (level == 0) {
-                        tmpchildren.add(parseReal(string.substring(startIndex, index)));
-                        startIndex = index + 1;
-                    }
-            }
-        }
+		/* The "level" we are on - braces increase and decrease it */
+		int level = 0;
 
-        if (index > startIndex) {
-            tmpchildren.add(string.substring(startIndex, index));
-        }
+		/* Temporary variables */
+		int startIndex = 0;
 
-        if (level != 0) {
-            IllegalSymbolInputException up = new IllegalSymbolInputException("输入中缺少括号：" + string);
-            throw up;
-        } else {
-            return new SymbolNode(tmpchildren);
-        }
-    }
+		/*
+		 * Repeat until the input string is completely parsed or the level reaches
+		 * an illegal value, meaning the number of braces doesn't add up
+		 */
+		while (index < input.length && level >= 0) {
+			/* If we are on a deeper level just add the characters */
+			switch (input[index]) {
+			case '(':
+				/*
+				 * Descending into a deeper level. If we were on the top level and
+				 * there are characters in the buffer, add them to the node as a new
+				 * Leaf entry
+				 */
+				if (level == 0) {
+					if (index > startIndex) {
+						tmpchildren.add(string.substring(startIndex, index));
+					}
+					startIndex = index + 1;
+				}
+				level++;
+				break;
+
+			case ')':
+				level--;
+
+				/*
+				 * Returning from a deeper level. If we hit the top level there
+				 * obviously now is a list in the buffer waiting to be parsed
+				 */
+				if (level == 0) {
+					tmpchildren.add(parseReal(string.substring(startIndex, index)));
+					startIndex = index + 1;
+				}
+				break;
+
+			case ' ':
+
+				/*
+				 * If we are on the top level and there are characters in the buffer
+				 * we hit the space character in its role as a spacer, add the
+				 * buffered characters to the node as a new Leaf entry
+				 */
+				if (level == 0) {
+					if (index > startIndex) {
+						tmpchildren.add(string.substring(startIndex, index));
+					}
+					startIndex = index + 1;
+				}
+				break;
+			}
+
+			index++;
+		}
+
+		/*
+		 * If we are at the end of the string and there are still characters in
+		 * the buffer there is another symbol to add
+		 */
+		if (index > startIndex) {
+			tmpchildren.add(string.substring(startIndex, index));
+		}
+
+		/* Check error conditions */
+		if (level != 0) {
+			IllegalSymbolInputException up = new IllegalSymbolInputException("Missing brackets in input: " + string);
+			throw up; // ha ha
+		}
+
+		return new SymbolNode(tmpchildren);
+	}
 }

@@ -7,9 +7,6 @@ import monitor.runtime.ICoachRuntime;
 public class StopDoor extends LockedDoor{
     @Override
     public LockState unlock(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
-        System.out.println("stop");
-
-        dataBuffer.lock();
         dataBuffer.resetCurrentNum();
         dataBuffer.setRunning(false);
 

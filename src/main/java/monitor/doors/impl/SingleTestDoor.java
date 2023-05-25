@@ -6,7 +6,6 @@ import monitor.runtime.ICoachRuntime;
 public class SingleTestDoor extends LockedDoor {
     @Override
     public LockState unlock(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
-
         if(coachRuntime.getWorldModel().getTime() >= dataBuffer.getSingleTime())
         {
             //假设机器人行走5m

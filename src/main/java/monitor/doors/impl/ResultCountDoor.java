@@ -7,7 +7,6 @@ import monitor.runtime.ICoachRuntime;
 public class ResultCountDoor extends LockedDoor{
     @Override
     public LockState unlock(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
-
         dataBuffer.addCurrentNum();
         dataBuffer.lock();
 

@@ -16,15 +16,16 @@ public class PythonAPI implements ICallback {
     }
     private synchronized static boolean isRan() {return ran;}
     private synchronized static void setRan(boolean ran) {
-        //System.out.println("setRan");
         PythonAPI.ran = ran;
     }
     private synchronized static float getResult() {
-        //System.out.println("getResult");
         return result;}
     private synchronized static void setResult(float result) {
-        //System.out.println("setResult");
         PythonAPI.result = result;}
+    private static void reset(){
+        setRan(false);
+        setResult(0.0f);
+    }
 
     public static void startCoach(){
         getBenchmark().setCallback(new PythonAPI());
@@ -34,19 +35,18 @@ public class PythonAPI implements ICallback {
         getBenchmark().stopConnection();
     }
     public static float getBenchmarkResult(){
+        reset();
+
         getBenchmark().startBenchmark();
-        while (!isRan()){
-        }
-        float fit = getResult();
-        setResult(0.0f);
-        return fit;
+
+        while (!isRan());
+
+        return getResult();
     }
 
     @Override
     public void call(float fitness) {
-        System.out.println("call");
         setResult(fitness);
         setRan(true);
-
     }
 }

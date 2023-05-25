@@ -63,7 +63,7 @@ public class ChannelDataBuffer {
         this.currentTestNum += 1;
     }
     public void resetCurrentNum(){
-        currentTestNum = 0;
+        this.currentTestNum = 0;
     }
     public Integer getCurrentNum(){return this.currentTestNum;}
     public void lock(){lockedDoorList.forEach(ILockedDoor::lock);}

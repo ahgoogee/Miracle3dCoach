@@ -5,15 +5,11 @@
 
 package base.geometry;
 
-import java.util.List;
-import org.apache.commons.math3.geometry.euclidean.threed.CardanEulerSingularityException;
-import org.apache.commons.math3.geometry.euclidean.threed.NotARotationMatrixException;
-import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
-import org.apache.commons.math3.geometry.euclidean.threed.RotationConvention;
-import org.apache.commons.math3.geometry.euclidean.threed.RotationOrder;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
+import org.apache.commons.math3.geometry.euclidean.threed.*;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 import org.apache.commons.math3.linear.RealMatrix;
+
+import java.util.List;
 
 /**
  * Utilities for geometric calculations

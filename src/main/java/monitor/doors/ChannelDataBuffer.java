@@ -1,7 +1,10 @@
 package monitor.doors;
 
 
+import api.ICallback;
+
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Channel data buffer
@@ -13,7 +16,7 @@ public class ChannelDataBuffer {
     /**
      * 是否开启测试
      */
-    private  Boolean isRunning = false;
+    private  Boolean running = false;
     /**
      * 总测试数
      */
@@ -38,35 +41,39 @@ public class ChannelDataBuffer {
     private List<ILockedDoor> lockedDoorList;
 
 
-    private ISignal signal;
+    /**
+     * 结果返回回调函数
+     */
+    private ICallback callback;
 
-    //启动回调函数
-
-    public ChannelDataBuffer(Integer totalTestNum, Float singleTestTime, List<ILockedDoor> lockedDoorList,ISignal signal) {
+    public ChannelDataBuffer(Integer totalTestNum, Float singleTestTime, List<ILockedDoor> lockedDoorList) {
         this.totalTestNum = totalTestNum;
         this.singleTestTime = singleTestTime;
         this.lockedDoorList = lockedDoorList;
-        this.signal = signal;
     }
 
-    public synchronized Boolean isRunning() {return isRunning;}
-    public synchronized void setIsRunning(Boolean isRunning) {this.isRunning = isRunning;}
-    public Integer getTotalTestNum() {return totalTestNum;}
-    public Float getSingleTestTime() {return singleTestTime;}
+    public synchronized Boolean isRunning() {return running;}
+    public synchronized void setRunning(Boolean running) {this.running = running;}
+    public Integer getTotalNum() {return totalTestNum;}
+    public Float getSingleTime() {return singleTestTime;}
     public Float getTotalFitness() {return totalFitness;}
     public void setTotalFitness(Float totalFitness) {this.totalFitness = totalFitness;}
-    public void addCurrent()
+    public void addCurrentNum()
     {
         this.currentTestNum += 1;
     }
-    public void resetCurrent(){
+    public void resetCurrentNum(){
         currentTestNum = 0;
     }
-    public Integer getCurrentTestNum(){return this.currentTestNum;}
-    public void lockDisposableLock(){lockedDoorList.forEach(ILockedDoor::lock);}
+    public Integer getCurrentNum(){return this.currentTestNum;}
+    public void lock(){lockedDoorList.forEach(ILockedDoor::lock);}
 
-    public void Signal(){
-        signal.signal();
+    public void setCallback(ICallback callback){
+        this.callback = callback;
+    }
+    public void call(float fitness){
+        if(!Objects.isNull(callback))
+            callback.call(fitness);
     }
 
 }

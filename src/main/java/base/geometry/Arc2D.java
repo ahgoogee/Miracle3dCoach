@@ -5,9 +5,10 @@
 
 package base.geometry;
 
+import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+
 import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 public class Arc2D extends Circle2D
 {

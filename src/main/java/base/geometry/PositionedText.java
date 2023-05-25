@@ -5,8 +5,9 @@
 
 package base.geometry;
 
-import java.awt.Color;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+
+import java.awt.*;
 
 /**
  * @author kdorer

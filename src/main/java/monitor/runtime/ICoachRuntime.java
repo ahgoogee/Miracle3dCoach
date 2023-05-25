@@ -12,5 +12,6 @@ public interface ICoachRuntime {
     IMonitorWorldModel getWorldModel();
 
     void addUpdateListener(IUpdateListener listener);
-    void startCoach();
+    void startConnection();
+    void stopConnection();
 }

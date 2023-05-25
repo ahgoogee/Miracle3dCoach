@@ -17,22 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CoachRuntime implements IObserver<byte[]> , ICoachRuntime,Runnable {
-    private static CoachRuntime instance;
-    public static CoachRuntime getInstance(){
-
-        if(Objects.isNull(instance))
-            return null;
-        return instance;
-
-    }
-    public static CoachRuntime getInstance(String host,Integer port){
-
-        if (Objects.isNull(instance))
-            instance = new CoachRuntime(host, port);
-        return instance;
-
-    }
-    private CoachRuntime(String host,Integer port){
+    public CoachRuntime(String host,Integer port){
         connection = new ServerConnection(host,port);
         connection.attach(this);
         commander = new ServerCommander(connection);
@@ -65,11 +50,16 @@ public class CoachRuntime implements IObserver<byte[]> , ICoachRuntime,Runnable 
     }
 
     @Override
-    public void startCoach() {
+    public void startConnection() {
         if (Objects.isNull(thread)) {
             thread = new Thread(this,"coach");
             thread.start();
         }
+    }
+
+    @Override
+    public void stopConnection() {
+        connection.stopReceiveLoop();
     }
 
     @Override

@@ -8,7 +8,6 @@ import utils.scene.impl.BaseNode;
 import utils.scene.impl.SceneGraph;
 import utils.scene.impl.SceneGraphHeader;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 public class MonitorMessageParser implements IMonitorMessageParser {

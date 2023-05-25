@@ -5,8 +5,9 @@
 
 package base.geometry.positionFilter;
 
-import java.util.LinkedList;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
+
+import java.util.LinkedList;
 
 public abstract class PositionFilterBase extends BaseFilter
 {

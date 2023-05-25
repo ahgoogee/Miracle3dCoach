@@ -5,10 +5,11 @@
 
 package base.geometry;
 
-import java.io.Serializable;
-import java.util.Locale;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+
+import java.io.Serializable;
+import java.util.Locale;
 
 /**
  * Represents an angle. Objects are immutable.

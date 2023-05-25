@@ -5,12 +5,9 @@
 
 package base.geometry;
 
+import org.apache.commons.math3.geometry.euclidean.threed.*;
+
 import java.util.Locale;
-import org.apache.commons.math3.geometry.euclidean.threed.CardanEulerSingularityException;
-import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
-import org.apache.commons.math3.geometry.euclidean.threed.RotationConvention;
-import org.apache.commons.math3.geometry.euclidean.threed.RotationOrder;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 /**
  * Stores pose in 3D. The pose is represented by 6 double values, three for

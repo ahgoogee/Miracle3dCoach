@@ -5,15 +5,12 @@
 
 package base.geometry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.OptionalDouble;
-import java.util.function.ToDoubleFunction;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 import org.apache.commons.math3.util.FastMath;
+
+import java.util.*;
+import java.util.function.ToDoubleFunction;
 
 public class VectorUtils
 {

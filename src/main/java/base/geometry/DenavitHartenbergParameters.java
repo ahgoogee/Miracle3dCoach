@@ -5,8 +5,9 @@
 
 package base.geometry;
 
-import java.io.Serializable;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
+
+import java.io.Serializable;
 
 /**
  * Holds parameters needed to perform Denavit/Hartenberg Transformations

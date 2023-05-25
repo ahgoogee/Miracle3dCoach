@@ -5,8 +5,9 @@
 
 package base.geometry.orientationFilter;
 
-import java.util.LinkedList;
 import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
+
+import java.util.LinkedList;
 
 public abstract class OrientationFilterBase implements IOrientationFilter
 {

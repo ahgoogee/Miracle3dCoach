@@ -7,7 +7,6 @@ package monitor.msgparser.impl;
 
 import base.symbol.SymbolNode;
 import monitor.enums.Foul;
-import monitor.msgparser.impl.NodeConversionException;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import utils.scene.NodeType;
 import utils.scene.impl.*;

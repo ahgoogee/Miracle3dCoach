@@ -1,8 +1,13 @@
 package monitor.benchmarks;
 
-public interface IBenchmark extends IUpdateListener{
-    void startTest();
+import api.ICallback;
 
-    void startCoach();
-    //float getFitness();
+public interface IBenchmark extends IUpdateListener{
+    void startBenchmark();
+
+    void startConnection();
+
+    void stopConnection();
+
+    void setCallback(ICallback callback);
 }

@@ -1,7 +1,6 @@
 package monitor.doors.impl;
 
 import monitor.doors.ChannelDataBuffer;
-import monitor.doors.ILockedDoor;
 import monitor.doors.LockState;
 import monitor.enums.PlayMode;
 import monitor.runtime.ICoachRuntime;

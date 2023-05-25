@@ -1,7 +1,7 @@
 package monitor.msgparser.impl;
 
-import monitor.msgparser.ISimulationState;
 import monitor.enums.Foul;
+import monitor.msgparser.ISimulationState;
 
 import java.util.ArrayList;
 import java.util.List;

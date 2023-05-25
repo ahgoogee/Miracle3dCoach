@@ -5,11 +5,12 @@
 
 package base.geometry;
 
-import java.text.DecimalFormat;
 import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
 import org.apache.commons.math3.geometry.euclidean.threed.RotationConvention;
 import org.apache.commons.math3.geometry.euclidean.threed.RotationOrder;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
+
+import java.text.DecimalFormat;
 
 /**
  * Stores a 3D position and orientation

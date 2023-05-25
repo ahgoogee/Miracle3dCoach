@@ -5,11 +5,12 @@
 
 package base.geometry;
 
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
+import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
-import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 /**
  * Stores a 2D position and orientation.

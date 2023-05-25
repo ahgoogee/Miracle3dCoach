@@ -5,8 +5,9 @@
 
 package base.geometry.positionFilter;
 
-import java.util.Iterator;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
+
+import java.util.Iterator;
 
 /**
  * Interpolate a more reliable position value for an object from a list of past,

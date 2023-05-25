@@ -5,11 +5,11 @@
 
 package utils.scene.impl;
 
+import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import utils.scene.IBaseNode;
 import utils.scene.ITransformNode;
 import utils.scene.NodeType;
-import org.apache.commons.math3.geometry.euclidean.threed.Rotation;
-import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 public class TransformNode extends BaseNode implements ITransformNode
 {

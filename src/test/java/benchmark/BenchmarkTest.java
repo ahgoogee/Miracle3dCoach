@@ -1,22 +1,23 @@
 package benchmark;
 
 import monitor.benchmarks.benchmarkImpl.RunBenchmark;
-import monitor.doors.ISignal;
+import api.ICallback;
 
-public class BenchmarkTest implements ISignal {
+public class BenchmarkTest implements ICallback {
     private static Boolean next;
 
     public static synchronized Boolean getNext(){return next;}
     public static synchronized void setNext(Boolean _next){next = _next;}
     public static void main(String[] args) {
-        RunBenchmark benchmark = new RunBenchmark(new BenchmarkTest());
-        benchmark.startCoach();
+        RunBenchmark benchmark = new RunBenchmark();
+        benchmark.setCallback(new BenchmarkTest());
+        benchmark.startConnection();
 
 
         setNext(false);
         while (true){
 
-            benchmark.startTest();
+            benchmark.startBenchmark();
 
             while (!getNext()){}
 
@@ -26,9 +27,9 @@ public class BenchmarkTest implements ISignal {
     }
 
     @Override
-    public void signal() {
+    public void call(float fitness) {
         setNext(true);
-        System.out.println("signal");
+        System.out.println("AVG Fit:"+fitness);
     }
 
 }

@@ -7,16 +7,18 @@ import monitor.runtime.ICoachRuntime;
 public class StopDoor extends LockedDoor{
     @Override
     public LockState unlock(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
+        System.out.println("stop");
 
-        dataBuffer.lockDisposableLock();
-        dataBuffer.resetCurrent();
-        dataBuffer.setIsRunning(false);
+        dataBuffer.lock();
+        dataBuffer.resetCurrentNum();
+        dataBuffer.setRunning(false);
 
+        float fitness = dataBuffer.getTotalFitness()/dataBuffer.getTotalNum();
 
-        System.out.println(dataBuffer.getTotalFitness()/dataBuffer.getTotalTestNum());
 
         dataBuffer.setTotalFitness(0.0f);
-        dataBuffer.Signal();
+
+        dataBuffer.call(fitness);
 
 
         return LockState.UNLOCKED;

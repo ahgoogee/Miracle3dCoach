@@ -5,9 +5,10 @@
 
 package base.geometry;
 
-import java.io.Serializable;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+
+import java.io.Serializable;
 
 /**
  * An Area in 2D space. Usually used to define a rectangular area.

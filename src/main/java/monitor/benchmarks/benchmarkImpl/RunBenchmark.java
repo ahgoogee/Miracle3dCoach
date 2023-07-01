@@ -38,7 +38,7 @@ public class RunBenchmark extends BenchmarkBase{
     protected void unlock(List<ILockedDoor> doors) {
         for(ILockedDoor door : doors)
         {
-            LockState state = door.unlock(this.dataBuffer,this.coachRuntime);
+            LockState state = door.unlocking(this.dataBuffer,this.coachRuntime);
             if(state==LockState.LOCKED)
                 return;
         }

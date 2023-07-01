@@ -4,9 +4,12 @@ import monitor.doors.ChannelDataBuffer;
 import monitor.doors.LockState;
 import monitor.runtime.ICoachRuntime;
 
+/**
+ * 控制教练何时开始测试,用来同步外部调用
+ */
 public class StartDoor extends LockedDoor{
     @Override
-    public LockState unlock(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
+    public LockState unlocking(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
         if(unlocked)
             return LockState.UNLOCKED;
 

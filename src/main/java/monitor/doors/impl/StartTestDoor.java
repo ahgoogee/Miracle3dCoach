@@ -5,20 +5,27 @@ import monitor.doors.LockState;
 import monitor.enums.PlayMode;
 import monitor.runtime.ICoachRuntime;
 
+/**
+ * 开始测试门,用来进行测试前准备工作
+ */
 public class StartTestDoor extends LockedDoor {
     @Override
-    public LockState unlock(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
+    public LockState unlocking(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
         if(unlocked)
             return LockState.UNLOCKED;
 
-        if(coachRuntime.getWorldModel().getPlayMode() == PlayMode.PLAY_ON)
+        if( PlayMode.PLAY_ON == coachRuntime.getWorldModel().getPlayMode())
         {
-            unlocked = true;
+            unlock();
             return LockState.UNLOCKED;
         }
 
-        coachRuntime.getCommander().setPlaymode(PlayMode.PLAY_ON);
+        prepare(coachRuntime);
 
         return LockState.LOCKED;
+    }
+
+    private void prepare(ICoachRuntime coachRuntime){
+        coachRuntime.getCommander().setPlaymode(PlayMode.PLAY_ON);
     }
 }

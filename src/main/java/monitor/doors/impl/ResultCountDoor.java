@@ -4,9 +4,12 @@ import monitor.doors.ChannelDataBuffer;
 import monitor.doors.LockState;
 import monitor.runtime.ICoachRuntime;
 
+/**
+ * 结果统计门
+ */
 public class ResultCountDoor extends LockedDoor{
     @Override
-    public LockState unlock(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
+    public LockState unlocking(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
         dataBuffer.addCurrentNum();
         dataBuffer.lock();
 

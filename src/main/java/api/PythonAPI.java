@@ -15,13 +15,9 @@ public class PythonAPI implements ICallback {
         return benchmark;
     }
     private synchronized static boolean isRan() {return ran;}
-    private synchronized static void setRan(boolean ran) {
-        PythonAPI.ran = ran;
-    }
-    private synchronized static float getResult() {
-        return result;}
-    private synchronized static void setResult(float result) {
-        PythonAPI.result = result;}
+    private synchronized static void setRan(boolean ran) {PythonAPI.ran = ran;}
+    private synchronized static float getResult() {return result;}
+    private synchronized static void setResult(float result) {PythonAPI.result = result;}
     private static void reset(){
         setRan(false);
         setResult(0.0f);

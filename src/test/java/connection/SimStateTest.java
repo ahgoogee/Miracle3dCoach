@@ -1,17 +1,17 @@
 package connection;
 
-import base.connection.ConnectionException;
-import base.connection.IServerConnection;
-import base.connection.impl.ServerConnection;
-import base.observer.IObserver;
-import base.symbol.SymbolNode;
-import base.symbol.SymbolTreeParser;
-import monitor.msgparser.ISimulationState;
-import monitor.msgparser.impl.NodeConversionException;
-import monitor.msgparser.impl.RSGConverter;
-import utils.scene.impl.BaseNode;
-import utils.scene.impl.SceneGraph;
-import utils.scene.impl.SceneGraphHeader;
+import com.miracle3d.coach.base.connection.ConnectionException;
+import com.miracle3d.coach.base.connection.IServerConnection;
+import com.miracle3d.coach.base.connection.impl.ServerConnection;
+import com.miracle3d.coach.base.observer.IObserver;
+import com.miracle3d.coach.base.symbol.SymbolNode;
+import com.miracle3d.coach.base.symbol.SymbolTreeParser;
+import com.miracle3d.coach.monitor.msgparser.ISimulationState;
+import com.miracle3d.coach.monitor.msgparser.impl.NodeConversionException;
+import com.miracle3d.coach.monitor.msgparser.impl.RSGConverter;
+import com.miracle3d.coach.utils.scene.impl.BaseNode;
+import com.miracle3d.coach.utils.scene.impl.SceneGraph;
+import com.miracle3d.coach.utils.scene.impl.SceneGraphHeader;
 
 import java.io.UnsupportedEncodingException;
 

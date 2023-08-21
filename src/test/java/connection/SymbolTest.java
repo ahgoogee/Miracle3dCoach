@@ -1,11 +1,11 @@
 package connection;
 
-import base.connection.ConnectionException;
-import base.connection.IServerConnection;
-import base.connection.impl.ServerConnection;
-import base.observer.IObserver;
-import base.symbol.SymbolNode;
-import base.symbol.SymbolTreeParser;
+import com.miracle3d.coach.base.connection.ConnectionException;
+import com.miracle3d.coach.base.connection.IServerConnection;
+import com.miracle3d.coach.base.connection.impl.ServerConnection;
+import com.miracle3d.coach.base.observer.IObserver;
+import com.miracle3d.coach.base.symbol.SymbolNode;
+import com.miracle3d.coach.base.symbol.SymbolTreeParser;
 
 import java.io.UnsupportedEncodingException;
 

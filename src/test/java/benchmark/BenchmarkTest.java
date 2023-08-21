@@ -1,7 +1,7 @@
 package benchmark;
 
-import monitor.benchmarks.benchmarkImpl.RunBenchmark;
-import api.ICallback;
+import com.miracle3d.coach.monitor.benchmarks.benchmarkImpl.RunBenchmark;
+import com.miracle3d.coach.api.ICallback;
 
 public class BenchmarkTest implements ICallback {
     private static Boolean next;

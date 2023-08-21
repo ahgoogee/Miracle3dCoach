@@ -1,15 +1,15 @@
 package commander;
 
-import base.connection.ConnectionException;
-import base.connection.IServerConnection;
-import base.connection.impl.ServerConnection;
-import base.observer.IObserver;
-import monitor.command.ServerCommander;
-import monitor.enums.PlayMode;
-import monitor.msgparser.IMonitorMessageParser;
-import monitor.msgparser.impl.MonitorMessageParser;
-import monitor.worldmodel.IMonitorWorldModel;
-import monitor.worldmodel.impl.MonitorWorldModel;
+import com.miracle3d.coach.base.connection.ConnectionException;
+import com.miracle3d.coach.base.connection.IServerConnection;
+import com.miracle3d.coach.base.connection.impl.ServerConnection;
+import com.miracle3d.coach.base.observer.IObserver;
+import com.miracle3d.coach.monitor.command.ServerCommander;
+import com.miracle3d.coach.monitor.enums.PlayMode;
+import com.miracle3d.coach.monitor.msgparser.IMonitorMessageParser;
+import com.miracle3d.coach.monitor.msgparser.impl.MonitorMessageParser;
+import com.miracle3d.coach.monitor.worldmodel.IMonitorWorldModel;
+import com.miracle3d.coach.monitor.worldmodel.impl.MonitorWorldModel;
 
 import java.util.Objects;
 

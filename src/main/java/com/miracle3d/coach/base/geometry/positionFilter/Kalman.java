@@ -29,19 +29,19 @@ public class Kalman extends BaseFilter
 	// the state matrix
 	private RealMatrix X;
 
-	private RealMatrix A;
+	private final RealMatrix A;
 
 	// the state covariance matrix (error in the estimate X)
 	private RealMatrix P;
 
 	// the measurement covariance matrix (error in the measurement)
-	private RealMatrix R;
+	private final RealMatrix R;
 
-	private RealMatrix Q;
+	private final RealMatrix Q;
 
 	// private RealMatrix Z;
 
-	private RealMatrix I;
+	private final RealMatrix I;
 
 	public Kalman()
 	{

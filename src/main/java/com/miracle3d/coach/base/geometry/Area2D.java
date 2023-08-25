@@ -19,13 +19,13 @@ public class Area2D
 {
 	public static class Int implements Serializable
 	{
-		private int minX;
+		private final int minX;
 
-		private int maxX;
+		private final int maxX;
 
-		private int minY;
+		private final int minY;
 
-		private int maxY;
+		private final int maxY;
 
 		public Int(int minX, int maxX, int minY, int maxY)
 		{
@@ -171,13 +171,13 @@ public class Area2D
 
 	public static class Float implements Serializable
 	{
-		private float minX;
+		private final float minX;
 
-		private float maxX;
+		private final float maxX;
 
-		private float minY;
+		private final float minY;
 
-		private float maxY;
+		private final float maxY;
 
 		public Float(float minX, float maxX, float minY, float maxY)
 		{

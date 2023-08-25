@@ -27,13 +27,13 @@ public class CoachRuntime implements IObserver<byte[]> , ICoachRuntime,Runnable 
     }
 
 
-    private IServerConnection connection;
-    private ServerCommander commander;
-    private IMonitorWorldModel worldModel;
-    private IMonitorMessageParser parser;
+    private final IServerConnection connection;
+    private final ServerCommander commander;
+    private final IMonitorWorldModel worldModel;
+    private final IMonitorMessageParser parser;
     private Thread thread;
 
-    private List<IUpdateListener> listeners;
+    private final List<IUpdateListener> listeners;
     public IServerConnection getConnection() {return connection;}
 
     public ServerCommander getCommander() {

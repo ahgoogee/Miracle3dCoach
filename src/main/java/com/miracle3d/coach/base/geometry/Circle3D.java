@@ -14,13 +14,13 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 public class Circle3D
 {
 	/** center of the circle */
-	private Vector3D center;
+	private final Vector3D center;
 
 	/** normal to the plane in which the circle is */
-	private Vector3D normal;
+	private final Vector3D normal;
 
 	/** radius of the circle */
-	private double radius;
+	private final double radius;
 
 	/**
 	 * For now we assume that the circle is parallel to the x-plane. So normal

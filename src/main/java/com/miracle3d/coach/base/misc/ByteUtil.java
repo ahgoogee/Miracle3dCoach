@@ -146,7 +146,7 @@ public class ByteUtil
 	public static void printBytes(byte[] data, int maxAmount)
 	{
 		for (int i = 0; i < data.length && i < maxAmount; i++) {
-			System.out.print("" + data[i] + ",");
+			System.out.print(data[i] + ",");
 		}
 		if (maxAmount < data.length) {
 			System.out.println("...");

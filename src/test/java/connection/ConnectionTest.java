@@ -6,6 +6,7 @@ import com.miracle3d.coach.base.connection.impl.ServerConnection;
 import com.miracle3d.coach.base.observer.IObserver;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class ConnectionTest {
     public static void main(String[] args) {
@@ -28,11 +29,7 @@ public class ConnectionTest {
         @Override
         public void update(byte[] var1) {
             String content = null;
-            try {
-                content = new String(var1, 0, var1.length, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
+            content = new String(var1, 0, var1.length, StandardCharsets.UTF_8);
             System.out.println(content);
             System.out.println("////////////////////////////////////////////////////////////////////////////////");
         }

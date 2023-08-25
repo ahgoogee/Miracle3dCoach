@@ -1,10 +1,9 @@
 package com.miracle3d.coach.monitor.doors;
 
 
-import com.miracle3d.coach.api.ICallback;
-
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 /**
  * Channel data buffer
@@ -38,13 +37,13 @@ public class ChannelDataBuffer {
     /**
      * 所有door,用于门之间访问
      */
-    private List<ILockedDoor> lockedDoorList;
+    private final List<ILockedDoor> lockedDoorList;
 
 
     /**
      * 结果返回回调函数
      */
-    private ICallback callback;
+    private Consumer<Float> callback;
 
     public ChannelDataBuffer(Integer totalTestNum, Float singleTestTime, List<ILockedDoor> lockedDoorList) {
         this.totalTestNum = totalTestNum;
@@ -68,12 +67,12 @@ public class ChannelDataBuffer {
     public Integer getCurrentNum(){return this.currentTestNum;}
     public void lock(){lockedDoorList.forEach(ILockedDoor::lock);}
 
-    public void setCallback(ICallback callback){
+    public void setCallback(Consumer<Float> callback){
         this.callback = callback;
     }
     public void call(float fitness){
         if(!Objects.isNull(callback))
-            callback.call(fitness);
+            callback.accept(fitness);
     }
 
 }

@@ -31,7 +31,7 @@ public class SoccerBall extends SimulationObject implements ISoccerBall {
     public void refresh(float deltaT) {
         if (this.graphRoot != null && this.graphRoot.getNodeType() == NodeType.TRANSFORM) {
             float[] matrix = ((TransformNode)this.graphRoot).getLocalTransformation();
-            this.position = new Vector3D((double)matrix[12], (double)matrix[13], (double)matrix[14]);
+            this.position = new Vector3D(matrix[12], matrix[13], matrix[14]);
         }
 
     }

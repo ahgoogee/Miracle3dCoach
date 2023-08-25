@@ -7,6 +7,7 @@ import com.miracle3d.coach.monitor.runtime.ICoachRuntime;
 import com.miracle3d.coach.monitor.worldmodel.ISoccerAgent;
 
 public class CheckAgentDoor extends LockedDoor{
+    private int localDelay = 40;
 
     @Override
     public LockState unlocking(ChannelDataBuffer dataBuffer, ICoachRuntime coachRuntime) {
@@ -16,10 +17,8 @@ public class CheckAgentDoor extends LockedDoor{
         if(coachRuntime.getWorldModel().getSoccerAgents().isEmpty())
             return LockState.LOCKED;
 
-        ISoccerAgent agent = coachRuntime.getWorldModel().getSoccerAgents().get(0);
-        if(agent.getPosition().getZ()<0.15f)
-        {
-            coachRuntime.getCommander().movePlayer(PlaySide.LEFT,agent.getPlayerID(),-1f,0f,0f);
+        if(localDelay > 0){
+            localDelay--;
             return LockState.LOCKED;
         }
 

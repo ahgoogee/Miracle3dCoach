@@ -10,8 +10,8 @@ public enum LockState {
         this.code = code;
         this.state = state;
     }
-    private Boolean code;
-    private String state;
+    private final Boolean code;
+    private final String state;
 
     public Boolean getCode() {
         return code;

@@ -126,11 +126,11 @@ public class MonitorWorldModel implements IMonitorWorldModel {
     private void createSimulationObjects() {
         ArrayList<IBaseNode> topLevelNodes = this.sceneGraph.getRootNode().getChildren();
         if (topLevelNodes != null && topLevelNodes.size() >= 36) {
-            this.ball.setGraphRoot((IBaseNode)topLevelNodes.get(35));
+            this.ball.setGraphRoot(topLevelNodes.get(35));
             ArrayList<SoccerAgent> newAgents = new ArrayList();
 
             for(int i = 36; i < topLevelNodes.size(); ++i) {
-                IBaseNode currentNode = (IBaseNode)topLevelNodes.get(i);
+                IBaseNode currentNode = topLevelNodes.get(i);
                 if (currentNode.getChildren() != null && currentNode.getChildren().size() > 0) {
                     String teamName;
                     if (currentNode.getNode(IMeshNode.class, "materials", "matLeft") != null) {

@@ -30,7 +30,7 @@ public class SimulationState implements ISimulationState {
     private Integer leftScore;
     private Integer rightScore;
     private Integer playMode;
-    private List<Foul> fouls = new ArrayList();
+    private final List<Foul> fouls = new ArrayList();
 
     private Integer passModeMinOppBallDist;
     private Integer passModeDuration;

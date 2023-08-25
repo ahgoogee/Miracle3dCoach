@@ -15,13 +15,13 @@ public class SoccerAgent extends SimulationObject implements ISoccerAgent {
     private String teamName;
     private int playerID;
     private String robotModel;
-    private Map<SoccerAgentBodyPart, Pose3D> bodyPartPoses = new HashMap();
+    private final Map<SoccerAgentBodyPart, Pose3D> bodyPartPoses = new HashMap();
 
     public SoccerAgent(IBaseNode graphRoot, String teamName) {
         super(graphRoot);
         this.teamName = teamName;
         if (graphRoot != null) {
-            IMeshNode meshNode = (IMeshNode)graphRoot.getNode(IMeshNode.class, "objName", "models/naobody[0-9]*[.]obj");
+            IMeshNode meshNode = graphRoot.getNode(IMeshNode.class, "objName", "models/naobody[0-9]*[.]obj");
             if (meshNode != null && meshNode.getMaterials() != null) {
                 String[] materials = meshNode.getMaterials();
                 String[] var5 = materials;
@@ -30,7 +30,7 @@ public class SoccerAgent extends SimulationObject implements ISoccerAgent {
                 for(int var7 = 0; var7 < var6; ++var7) {
                     String material = var5[var7];
                     if (material.startsWith("matNum") && material.length() > 6) {
-                        String numberStr = material.substring(6, material.length());
+                        String numberStr = material.substring(6);
 
                         try {
                             this.playerID = Integer.parseInt(numberStr);
@@ -78,7 +78,7 @@ public class SoccerAgent extends SimulationObject implements ISoccerAgent {
                 this.checkBodyPart(node, "models/lfoot.obj", SoccerAgentBodyPart.LEFT_FOOT);
                 this.checkBodyPart(node, "models/rfoot.obj", SoccerAgentBodyPart.RIGHT_FOOT);
             });
-            IBaseNode child = (IBaseNode)this.graphRoot.getChildren().get(0);
+            IBaseNode child = this.graphRoot.getChildren().get(0);
             if (child.getNodeType() == NodeType.TRANSFORM) {
                 this.position = ((ITransformNode)child).getPosition();
             }
@@ -98,7 +98,7 @@ public class SoccerAgent extends SimulationObject implements ISoccerAgent {
     }
 
     public Pose3D getBodyPartPose(SoccerAgentBodyPart bodyPart) {
-        return (Pose3D)this.bodyPartPoses.get(bodyPart);
+        return this.bodyPartPoses.get(bodyPart);
     }
 
     public String getRobotModel() {

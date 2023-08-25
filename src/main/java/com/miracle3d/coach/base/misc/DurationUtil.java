@@ -24,6 +24,6 @@ public class DurationUtil
 		int hours = Integer.parseInt(components[0]);
 		int minutes = Integer.parseInt(components[1]);
 		int seconds = Integer.parseInt(components[2]);
-		return Duration.ofSeconds(hours * 3600 + minutes * 60 + seconds);
+		return Duration.ofSeconds(hours * 3600L + minutes * 60L + seconds);
 	}
 }

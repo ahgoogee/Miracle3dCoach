@@ -16,8 +16,8 @@ import java.io.Serializable;
  */
 public class Rectangle implements Serializable
 {
-	private Vector2D bl;
-	private Vector2D tr;
+	private final Vector2D bl;
+	private final Vector2D tr;
 
 	public Rectangle(Vector2D bottomLeft, Vector2D topRight)
 	{

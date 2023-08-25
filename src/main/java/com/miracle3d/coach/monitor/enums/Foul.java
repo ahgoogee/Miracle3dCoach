@@ -27,7 +27,7 @@ public class Foul {
         }
     }
 
-    public static enum FoulType {
+    public enum FoulType {
         CROWDING(0, "crowding"),
         TOUCHING(1, "touching"),
         ILLEGAL_DEFENCE(2, "illegal defence"),
@@ -38,10 +38,10 @@ public class Foul {
         Unknown7(7,"[规则加新违规了,但是我不知道,将就着用]"),
         Unknown8(8,"[规则加新违规了,但是我不知道,将就着用]");
 
-        private int index;
-        private String name;
+        private final int index;
+        private final String name;
 
-        private FoulType(int index, String name) {
+        FoulType(int index, String name) {
             this.index = index;
             this.name = name;
         }

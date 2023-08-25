@@ -16,10 +16,10 @@ import java.io.Serializable;
 public class PoseSpeed2D implements Serializable
 {
 	/** position and orientation of an object */
-	private IPose2D pose;
+	private final IPose2D pose;
 
 	/** the speed there in local coordinates */
-	private Vector2D speed;
+	private final Vector2D speed;
 
 	public PoseSpeed2D(IPose2D pose, Vector2D speed)
 	{

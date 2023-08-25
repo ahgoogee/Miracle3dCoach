@@ -13,10 +13,10 @@ import java.util.List;
 public class Arc2D extends Circle2D
 {
 	/** the angle where to start the arc */
-	private Angle startAngle;
+	private final Angle startAngle;
 
 	/** the angle where to end the arc */
-	private Angle endAngle;
+	private final Angle endAngle;
 
 	public Arc2D(double x, double y, double radius, Angle startAngle, Angle endAngle)
 	{

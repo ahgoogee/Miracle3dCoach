@@ -18,7 +18,7 @@ public class UnixCommandUtil
 	 * Is {@code true} if this is running on a Unix-like operating system.
 	 * (Assumption: every operating system except for Windows is Unix-like.)
 	 */
-	private static boolean IS_UNIX_OS = !System.getProperty("os.name").startsWith("Windows");
+	private static final boolean IS_UNIX_OS = !System.getProperty("os.name").startsWith("Windows");
 
 	/**
 	 * Retrieves the pid of a unix process. (Since Java 9, this is also possible with {@link Process pid()}.)

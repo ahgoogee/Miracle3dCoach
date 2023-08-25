@@ -8,7 +8,7 @@ public enum PlaySide {
 
     private final String playSideString;
 
-    private PlaySide(String playSideString) {
+    PlaySide(String playSideString) {
         this.playSideString = playSideString;
     }
 

@@ -14,6 +14,7 @@ import com.miracle3d.coach.utils.scene.impl.SceneGraph;
 import com.miracle3d.coach.utils.scene.impl.SceneGraphHeader;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class SimStateTest {
     public static void main(String[] args) {
@@ -29,15 +30,15 @@ public class SimStateTest {
 
     public static class SimStateRuntimeTest implements IObserver<byte[]> {
         private ISimulationState state;
-        private SymbolTreeParser parser = new SymbolTreeParser();
-        private RSGConverter rsgConverter = new RSGConverter();
+        private final SymbolTreeParser parser = new SymbolTreeParser();
+        private final RSGConverter rsgConverter = new RSGConverter();
         private SceneGraph scene;
         @Override
         public void update(byte[] var1) {
             this.state = null;
             this.scene = null;
             try {
-                String content = new String(var1, 0, var1.length, "UTF-8");
+                String content = new String(var1, StandardCharsets.UTF_8);
                 SymbolNode root = parser.parse(content);
 
                 ISimulationState currentState = this.rsgConverter.convertSimulationState((SymbolNode)root.children.get(0));
@@ -48,7 +49,7 @@ public class SimStateTest {
                 this.scene = new SceneGraph(header,node);
 
 
-            } catch (NodeConversionException | UnsupportedEncodingException e) {
+            } catch (NodeConversionException e) {
                 throw new RuntimeException(e);
             }
 

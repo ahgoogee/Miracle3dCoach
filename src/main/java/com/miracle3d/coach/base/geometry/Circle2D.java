@@ -138,9 +138,7 @@ public class Circle2D
 	{
 		double dist = new Pose2D(x, y).getDistanceTo(new Pose2D(other.x, other.y));
 		if (dist != 0 && dist < (this.getRadius() + other.getRadius())) {
-			if (!this.checkInnerTouch(other)) {
-				return true;
-			}
+			return !this.checkInnerTouch(other);
 		}
 		return false;
 	}

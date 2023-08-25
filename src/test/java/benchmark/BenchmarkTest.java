@@ -1,16 +1,15 @@
 package benchmark;
 
 import com.miracle3d.coach.monitor.benchmarks.benchmarkImpl.RunBenchmark;
-import com.miracle3d.coach.api.ICallback;
 
-public class BenchmarkTest implements ICallback {
+public class BenchmarkTest {
     private static Boolean next;
 
     public static synchronized Boolean getNext(){return next;}
     public static synchronized void setNext(Boolean _next){next = _next;}
     public static void main(String[] args) {
         RunBenchmark benchmark = new RunBenchmark();
-        benchmark.setCallback(new BenchmarkTest());
+        benchmark.setCallback(BenchmarkTest::call);
         benchmark.startConnection();
 
 
@@ -26,8 +25,7 @@ public class BenchmarkTest implements ICallback {
 
     }
 
-    @Override
-    public void call(float fitness) {
+    public static void call(Float fitness) {
         setNext(true);
         System.out.println("AVG Fit:"+fitness);
     }

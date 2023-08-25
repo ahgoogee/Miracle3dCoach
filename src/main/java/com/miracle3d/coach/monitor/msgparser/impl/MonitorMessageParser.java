@@ -21,7 +21,7 @@ public class MonitorMessageParser implements IMonitorMessageParser {
         this.state = null;
         this.scene = null;
         try {
-            String content = new String(var1, 0, var1.length, StandardCharsets.UTF_8);
+            String content = new String(var1, StandardCharsets.UTF_8);
             SymbolNode root = parser.parse(content);
 
             assert root.children != null;

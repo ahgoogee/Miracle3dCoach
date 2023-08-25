@@ -23,7 +23,7 @@ public class Polygon
 	private double area;
 
 	/** The polygon corner points (in clockwise order). */
-	private List<Vector2D> points;
+	private final List<Vector2D> points;
 
 	public Polygon(Vector2D p1, Vector2D p2, Vector2D p3)
 	{

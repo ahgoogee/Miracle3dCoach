@@ -46,7 +46,7 @@ public class SymbolNode
 				ret += " ";
 
 			if (child instanceof SymbolNode)
-				ret += "(" + child.toString() + ")";
+				ret += "(" + child + ")";
 			else
 				ret += child.toString();
 		}

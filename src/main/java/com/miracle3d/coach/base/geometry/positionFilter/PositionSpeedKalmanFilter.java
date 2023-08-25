@@ -18,7 +18,7 @@ import org.apache.commons.math3.linear.RealVector;
  */
 public class PositionSpeedKalmanFilter extends BaseFilter
 {
-	private KalmanFilter filter;
+	private final KalmanFilter filter;
 
 	public PositionSpeedKalmanFilter()
 	{

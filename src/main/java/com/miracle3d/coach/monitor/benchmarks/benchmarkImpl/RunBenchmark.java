@@ -1,20 +1,18 @@
 package com.miracle3d.coach.monitor.benchmarks.benchmarkImpl;
 
-import com.miracle3d.coach.api.ICallback;
 import com.miracle3d.coach.monitor.doors.impl.*;
 import com.miracle3d.coach.monitor.doors.ChannelDataBuffer;
 import com.miracle3d.coach.monitor.doors.ILockedDoor;
 import com.miracle3d.coach.monitor.doors.LockState;
-import com.miracle3d.coach.monitor.doors.impl.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class RunBenchmark extends BenchmarkBase{
     public RunBenchmark() {
         super();
     }
-    private ICallback callback = null;
 
     @Override
     protected List<ILockedDoor> createLockedDoors() {
@@ -53,7 +51,7 @@ public class RunBenchmark extends BenchmarkBase{
     }
 
     @Override
-    public void setCallback(ICallback callback) {
+    public void setCallback(Consumer<Float> callback) {
         dataBuffer.setCallback(callback);
     }
 }

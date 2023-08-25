@@ -14,10 +14,10 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 public class Sphere
 {
 	/** center of the sphere */
-	private Vector3D center;
+	private final Vector3D center;
 
 	/** radius of the sphere */
-	private double radius;
+	private final double radius;
 
 	public Sphere(Vector3D center, double radius)
 	{

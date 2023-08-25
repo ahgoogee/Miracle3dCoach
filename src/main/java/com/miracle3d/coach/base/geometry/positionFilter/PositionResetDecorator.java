@@ -16,7 +16,7 @@ public class PositionResetDecorator extends BaseFilter
 	IPositionFilter decoratee;
 
 	/** distance at which to reset the filter */
-	private double resetDistance;
+	private final double resetDistance;
 
 	public PositionResetDecorator(IPositionFilter decoratee, double resetDistance)
 	{

@@ -14,6 +14,6 @@ public enum SoccerAgentBodyPart {
     LEFT_FOOT,
     RIGHT_FOOT;
 
-    private SoccerAgentBodyPart() {
+    SoccerAgentBodyPart() {
     }
 }

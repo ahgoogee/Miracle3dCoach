@@ -25,7 +25,7 @@ public enum PlayMode {
 
     private final String name;
 
-    private PlayMode(String name) {
+    PlayMode(String name) {
         this.name = name;
     }
 

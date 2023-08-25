@@ -13,7 +13,7 @@ import java.util.List;
 public class Line2D
 {
 	/** The start point of the line segment. */
-	private Vector2D start;
+	private final Vector2D start;
 
 	/** The line segment extension. */
 	private Vector2D extension;

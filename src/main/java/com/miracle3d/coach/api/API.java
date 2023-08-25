@@ -2,7 +2,6 @@ package com.miracle3d.coach.api;
 
 import com.miracle3d.coach.monitor.benchmarks.IBenchmark;
 import com.miracle3d.coach.monitor.benchmarks.benchmarkImpl.KickBenchmark;
-import com.miracle3d.coach.monitor.benchmarks.benchmarkImpl.RunBenchmark;
 
 import java.util.Objects;
 

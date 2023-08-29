@@ -2,12 +2,14 @@ package com.miracle3d.coach.monitor.benchmarks;
 
 import com.miracle3d.coach.base.geometry.Pose2D;
 import com.miracle3d.coach.monitor.enums.PlayMode;
-import com.miracle3d.coach.monitor.enums.PlaySide;
 import com.miracle3d.coach.monitor.runtime.ICoachRuntime;
 import lombok.*;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.Map;
+import java.util.Vector;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 @Getter @Setter
 public class BenchmarkStream extends ProcessorCollection {
@@ -55,6 +57,7 @@ public class BenchmarkStream extends ProcessorCollection {
         setIgnore(false);
         return this;
     }
+
 
     @Processor
     public BenchmarkStream InitProcess(){
@@ -147,6 +150,10 @@ public class BenchmarkStream extends ProcessorCollection {
         return Ignore();
     }
 
+
+    private Vector3D ballLastPose = Vector3D.ZERO;
+    private Boolean ballLastState = false;
+    private Boolean ballCurrentState = false;
     @Processor
     public BenchmarkStream SingleBenchmarkProcess(){
         //判断是否需要跳过
@@ -156,7 +163,17 @@ public class BenchmarkStream extends ProcessorCollection {
         if(getProcessorState(getCurrentFunctionName()))
             return Continue();
 
-        if(coachRuntime.getWorldModel().getTime() >= getSingleTestTime())
+        Predicate<Vector3D> isMoving = pos->{
+            ballLastState = ballCurrentState;
+            ballLastPose = pos;
+
+            double deltaX = Vector3D.distance(pos,ballLastPose);
+            ballCurrentState = !(deltaX < 0.05);
+            return ballCurrentState;
+        };
+
+        if(coachRuntime.getWorldModel().getTime() >= getSingleTestTime()
+        || (!isMoving.test(coachRuntime.getWorldModel().getBall().getPosition()) && ballLastState))
         {
             Float distance = (float) coachRuntime.getWorldModel().getBall().getPosition().getX() - (float) initBallPose.x;
             setTotalFitness(getTotalFitness()+distance);

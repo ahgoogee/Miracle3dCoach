@@ -1,5 +1,7 @@
 package com.miracle3d.coach.api;
 
+import lombok.SneakyThrows;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -68,13 +70,19 @@ public class Server {
         return "stop";
     }
 
+    @SneakyThrows
     private void processMsg(String msg){
         if(msg.equals("start")){
             API.startCoach();
         }
         else if(msg.equals("result")){
             Thread thread = new Thread(()->{
-                float result = API.getBenchmarkResult();
+                float result = 0;
+                try {
+                    result = API.getBenchmarkResult();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 printWriter.println(result);
             });
             thread.start();

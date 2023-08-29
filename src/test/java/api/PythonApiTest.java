@@ -3,7 +3,7 @@ package api;
 import com.miracle3d.coach.api.API;
 
 public class PythonApiTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         API.startCoach();
 
         for (int i = 0; i < 10; i++) {

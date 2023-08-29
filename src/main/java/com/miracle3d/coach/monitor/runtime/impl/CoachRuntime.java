@@ -1,5 +1,6 @@
 package com.miracle3d.coach.monitor.runtime.impl;
 
+import com.miracle3d.coach.api.API;
 import com.miracle3d.coach.base.connection.ConnectionException;
 import com.miracle3d.coach.base.connection.IServerConnection;
 import com.miracle3d.coach.base.connection.impl.ServerConnection;
@@ -42,8 +43,6 @@ public class CoachRuntime implements IObserver<byte[]> , ICoachRuntime,Runnable 
 
     public IMonitorWorldModel getWorldModel() {return worldModel;}
 
-
-
     @Override
     public void addUpdateListener(IUpdateListener listener) {
         listeners.add(listener);
@@ -81,7 +80,7 @@ public class CoachRuntime implements IObserver<byte[]> , ICoachRuntime,Runnable 
      * @see Thread#run()
      */
     @Override
-    public void run() {
+    public void run() throws RuntimeException{
         try {
             connection.establishConnection();
             connection.startReceiveLoop();
